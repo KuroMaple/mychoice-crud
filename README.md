@@ -6,13 +6,15 @@ This project is a full-stack application built as a take-home technical challeng
 
 ## ✨ Features
 
-- 🔁 Full CRUD for managing `Item` entities
-- 📦 Django REST Framework for scalable, secure APIs
-- ⚛️ React + TypeScript frontend built with Vite
-- 🌈 Chakra UI for accessible, clean, responsive design
-- 🧠 Enforces uniqueness constraints by item group (Primary/Secondary)
-- 📡 Real-time updates using optimistic UI updates
-- 🧪 Easily extendable with testing, auth, or AI suggestions (next steps!)
+- ✅ Full CRUD support: list, create, retrieve by ID, and update items
+
+- 🗂️ Two item groups: Primary and Secondary, each enforcing unique item names
+
+- ❌ Robust error handling on the backend with proper HTTP status codes
+
+- 🧾 Clean and responsive frontend UI to interact with the item collection
+
+
 
 ---
 
@@ -20,27 +22,26 @@ This project is a full-stack application built as a take-home technical challeng
 
 | Layer    | Stack                                                   |
 |----------|---------------------------------------------------------|
-| Backend  | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white) ![DRF](https://img.shields.io/badge/Django_REST_Framework-092E20?style=for-the-badge&logo=django&logoColor=white) |
+| Backend  | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![DRF](https://img.shields.io/badge/Django_REST_Framework-092E20?style=for-the-badge&logo=django&logoColor=white) |
 | Frontend | ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)                |
 | UI       | ![Chakra UI](https://img.shields.io/badge/Chakra_UI-319795?style=for-the-badge&logo=chakra-ui&logoColor=white)                                                                                                   |
 
 
 ---
 
-## 🗃️ Data Model
+# 🚀 Getting Started
+## 🐍 Backend Setup (Django + PostgreSQL)
 
-```ts
-Item {
-  id: UUID
-  name: string       // unique within its group
-  group: "Primary" | "Secondary"
-  created_at: datetime
-  updated_at: datetime
-}
+### Prerequisites
+
+- PostgreSQL installed locally
+- Create a database and user:
+
+```sql
+CREATE DATABASE mychoice_db;
+CREATE USER mychoice_user WITH PASSWORD 'your_password';
+GRANT ALL PRIVILEGES ON DATABASE mychoice_db TO mychoice_user;
 ```
-
-## 🚀 Getting Started
-🐍 Backend Setup (Django)
 
 ```bash
 cd backend
@@ -50,8 +51,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
-The API will run on: http://localhost:8000
 ```
+The API will run on: http://localhost:8000
 
 ## ⚛️ Frontend Setup (React + Vite)
 ```bash
@@ -71,15 +72,14 @@ The app will run on: http://localhost:5173
 | PATCH	      | /items/{id}/ | Update item by ID  |                
 
 
-All endpoints follow standard REST and return appropriate HTTP status codes (400, 404, 201, etc.).
-
-
 ## 📌 Notes
-Both apps run independently in dev mode
+- All endpoints follow standard REST and return appropriate HTTP status codes (400, 404, 201, etc.)
 
-CORS is enabled via django-cors-headers to allow frontend-backend communication
+- Both apps run independently in dev mode
 
-Chakra UI was chosen for rapid, elegant component design
+- CORS is enabled via django-cors-headers to allow frontend-backend communication
+
+- Chakra UI was chosen for rapid, elegant component design
 
 
 ## 📮 Contact
