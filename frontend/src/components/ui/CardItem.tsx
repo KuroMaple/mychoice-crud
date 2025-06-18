@@ -22,14 +22,13 @@ const CardItem: React.FC<CardItemProps> = ({
             <strong>{group}</strong>
           </div>
           <p>
-            Created at: {created_at}
+            Created: {created_at}
           </p>
-          <p>Updated at: {updated_at}</p>
+          <p>Updated: {updated_at}</p>
         </Card.Description>
       </Card.Body>
       <Card.Footer justifyContent="flex-end">
-        <Button variant="outline">View</Button>
-        <Button>Join</Button>
+        <Button>Edit</Button>
       </Card.Footer>
     </Card.Root>
   )

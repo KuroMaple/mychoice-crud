@@ -1,9 +1,25 @@
 import { useEffect, useState } from "react"
 import { fetchItems, type Item } from "../../util/api/item"
-import { Box, Heading, Text, Spinner } from "@chakra-ui/react";
+import { Text, Spinner, Stack } from "@chakra-ui/react";
 import CardItem from './CardItem'
 
-export default function ItemsPage() {
+const dateFormatter = (date: string): string => {
+  return new Date(date).toLocaleDateString('en-US', {
+    weekday: 'short',      // "Tue"
+    year: 'numeric',       // "2025"
+    month: 'short',        // "Jun"
+    day: 'numeric',        // "17"
+    hour: '2-digit',       // "05 PM"
+    minute: '2-digit',
+    hour12: true
+  });
+} 
+
+interface ItemsPageProps {
+  reloadFlag: boolean;
+}
+
+const ItemsPage: React.FC<ItemsPageProps> = ({ reloadFlag }) => {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -11,13 +27,12 @@ export default function ItemsPage() {
     fetchItems()
       .then(setItems)
       .finally(() => setLoading(false));
-  }, []);
+  }, [reloadFlag]);
 
   if (loading) return <Spinner size="xl" />;
 
   return (
-    <Box p={6}>
-      <Heading size="lg">Items</Heading>
+    <Stack p={6} direction={"row"} wrap={"wrap"} justifyContent="center" gap={10}>
       {items.length === 0 ? (
         <Text>No items found.</Text>
       ) : (
@@ -26,11 +41,14 @@ export default function ItemsPage() {
             key={item.id}
             name={item.name}
             group={item.group}
-            created_at={item.created_at}
-            updated_at={item.updated_at}
+            created_at={dateFormatter(item.created_at)}
+            updated_at={dateFormatter(item.updated_at)}
           />
         ))
       )}
-    </Box>
+    </Stack>
   );
 }
+
+export default ItemsPage;
+// This component fetches items from the API and displays them in a grid of cards.
