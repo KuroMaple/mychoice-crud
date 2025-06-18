@@ -52,7 +52,7 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
-The API will run on: http://localhost:8000
+The API will run on: http://127.0.0.1:8000
 
 ## ⚛️ Frontend Setup (React + Vite)
 ```bash
