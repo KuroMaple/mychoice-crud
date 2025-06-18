@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { fetchItems, type Item } from "../../util/api/item"
-import { Text, Spinner, Stack } from "@chakra-ui/react";
+import { Text, Spinner, Stack, Heading } from "@chakra-ui/react";
 import CardItem from './CardItem'
 
 const dateFormatter = (date: string): string => {
@@ -17,9 +17,10 @@ const dateFormatter = (date: string): string => {
 
 interface ItemsPageProps {
   reloadFlag: boolean;
+  onItemUpdated: () => void; // Optional callback for item updates
 }
 
-const ItemsPage: React.FC<ItemsPageProps> = ({ reloadFlag }) => {
+const ItemsPage: React.FC<ItemsPageProps> = ({ reloadFlag, onItemUpdated }) => {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -32,6 +33,10 @@ const ItemsPage: React.FC<ItemsPageProps> = ({ reloadFlag }) => {
   if (loading) return <Spinner size="xl" />;
 
   return (
+  <>
+    <Heading size="5xl" mt={10} mb={4}>
+      Items List
+    </Heading>
     <Stack p={6} direction={"row"} wrap={"wrap"} justifyContent="center" gap={10}>
       {items.length === 0 ? (
         <Text>No items found.</Text>
@@ -39,14 +44,17 @@ const ItemsPage: React.FC<ItemsPageProps> = ({ reloadFlag }) => {
         items.map((item) => (
           <CardItem
             key={item.id}
+            id={item.id}
             name={item.name}
             group={item.group}
             created_at={dateFormatter(item.created_at)}
             updated_at={dateFormatter(item.updated_at)}
+            onItemUpdated={onItemUpdated} // Pass the callback to CardItem
           />
         ))
       )}
     </Stack>
+  </>
   );
 }
 

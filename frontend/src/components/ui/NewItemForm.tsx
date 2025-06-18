@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Box, Button, Input, Stack } from '@chakra-ui/react';
+import { Box, Button, Heading, Input, Stack } from '@chakra-ui/react';
 import { Toaster, toaster } from '@/components/ui/toaster'
 import { createItem } from '@/util/api/item'
 import MySelect from './MySelect'
@@ -56,6 +56,9 @@ const NewItemForm = ({ onItemCreated }: { onItemCreated: () => void }) => {
 
   return (
     <Box p={4} borderWidth="1px" rounded="md">
+      <Heading size="xl" mb={4}>
+        Create New Item Using The Form Below
+      </Heading>
       <Toaster />
       <Stack gap={4}>
         <Input

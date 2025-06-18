@@ -4,9 +4,10 @@ import { Portal, Select, createListCollection } from "@chakra-ui/react"
 type MySelectProps = {
   value: "Primary" | "Secondary";
   onChange: (value: "Primary" | "Secondary") => void;
+  portalTarget?: React.RefObject<HTMLElement>;
 };
 
-const MySelect = ({ value, onChange }: MySelectProps) => {
+const MySelect = ({ value, onChange, portalTarget}: MySelectProps) => {
   return (
     <Select.Root
     multiple={false} 
@@ -32,7 +33,7 @@ const MySelect = ({ value, onChange }: MySelectProps) => {
           <Select.Indicator />
         </Select.IndicatorGroup>
       </Select.Control>
-      <Portal>
+      <Portal container={portalTarget}>
         <Select.Positioner>
           <Select.Content>
             {groups.items.map((group) => (

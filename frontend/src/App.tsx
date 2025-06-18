@@ -16,11 +16,11 @@ function App() {
   return (
     <>
       <Container my={40} maxW="container.xl" centerContent>
-        <Heading size="6xl">
+        <Heading size="6xl" mb={10}>
           Welcome to the MyChoice CRUD App!
         </Heading>
         <NewItemForm onItemCreated={refetchItems}/>
-        <Items reloadFlag={reloadFlag}/>
+        <Items reloadFlag={reloadFlag} onItemUpdated={refetchItems}/>
       </Container>
     </>
   )
