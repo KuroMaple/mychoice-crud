@@ -29,7 +29,8 @@ This project is a full-stack application built as a take-home technical challeng
 
 ---
 
-# Demo
+# Demo Video (Youtube)
+Link: https://youtu.be/ETHNMTn3eaA
 [![IMAGE ALT TEXT HERE](./thumbnail.png)](https://youtu.be/ETHNMTn3eaA)
 
 ---
